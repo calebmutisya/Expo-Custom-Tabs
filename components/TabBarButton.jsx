@@ -28,6 +28,19 @@ const TabBarButton = (props) => {
         }
     })
 
+    const animatedTextStyle = useAnimatedStyle(() => {
+
+        const opacity = interpolate(
+            scale.value,
+            [0, 1],
+            [1, 0]
+        );
+
+        return {
+            opacity
+        }
+    })
+
   return (
     <Pressable {...props} style={styles.container} >
         <Animated.View style ={[animatedIconStyle]}>
@@ -37,9 +50,12 @@ const TabBarButton = (props) => {
                 }) 
             }
         </Animated.View>
-        <Text style = {{color, fontSize: 11}}>
+        <Animated.Text style = {[{color, fontSize: 11},animatedTextStyle]} >
             {label}
-        </Text>
+        </Animated.Text>
+        {/* <Text style = {{color, fontSize: 11}}>
+            {label}
+        </Text> */}
     </Pressable>
   )
 }
